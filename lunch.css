@@ -1,4 +1,4 @@
-/* Лабораторная работа 4. Хайваз Никита, группа 251-353 */
+/* Лабораторная работа 5. Хайваз Никита, группа 251-353 */
 .dishes {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -211,6 +211,34 @@ legend {
 .order-total {
     font-size: 24px;
 }
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter {
+    padding: 8px 18px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333333;
+    cursor: pointer;
+}
+
+    .filter:hover {
+        border-color: tomato;
+    }
+
+    .filter.active {
+        border-color: tomato;
+        background-color: tomato;
+        color: white;
+    }
 
 @media (max-width: 800px) {
     .dishes {
