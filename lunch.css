@@ -1,4 +1,4 @@
-/* Лабораторная работа 4. Хайваз Никита, группа 251-353 */
+/* Лабораторная работа 6. Хайваз Никита, группа 251-353 */
 .dishes {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -212,14 +212,143 @@ legend {
     font-size: 24px;
 }
 
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter {
+    padding: 8px 18px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333333;
+    cursor: pointer;
+}
+
+    .filter:hover {
+        border-color: tomato;
+    }
+
+    .filter.active {
+        border-color: tomato;
+        background-color: tomato;
+        color: white;
+    }
+
+.combos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.combo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 10px;
+    border-radius: 20px;
+    background-color: white;
+    filter: drop-shadow(5px 5px 12px rgba(0, 0, 0, 0.1));
+}
+
+.combo-dessert {
+    align-items: center;
+}
+
+.combo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    text-align: center;
+}
+
+    .combo-item img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        transition: transform 0.3s;
+    }
+
+        .combo-item img:hover {
+            transform: translateY(-8px) scale(1.15);
+        }
+
+    .combo-item p {
+        margin: 8px 0 0 0;
+        font-size: 12pt;
+    }
+
+    .combo-item .combo-note {
+        margin-top: 4px;
+        font-size: 10pt;
+        color: gray;
+    }
+
+.combo-dessert .combo-item {
+    width: 160px;
+}
+
+.notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.notification-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: white;
+    text-align: center;
+}
+
+    .notification-box p {
+        margin: 0 0 25px 0;
+        font-size: 22px;
+    }
+
+    .notification-box button {
+        padding: 10px 30px;
+        border: 2px solid black;
+        border-radius: 10px;
+        background-color: white;
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+        .notification-box button:hover {
+            border-color: tomato;
+            background-color: tomato;
+            color: white;
+        }
+
 @media (max-width: 800px) {
-    .dishes {
+    .dishes,
+    .combos-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 600px) {
-    .dishes {
+    .dishes,
+    .combos-grid {
         grid-template-columns: 1fr;
     }
 

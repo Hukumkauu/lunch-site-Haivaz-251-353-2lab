@@ -1,15 +1,19 @@
-// Лабораторная работа 4. Хайваз Никита, группа 251-353
+// Лабораторная работа 6. Хайваз Никита, группа 251-353
 // Выбор блюд и подсчёт стоимости заказа
 const selectedDishes = {
     soup: null,
     main_course: null,
-    drink: null
+    salad: null,
+    drink: null,
+    dessert: null
 };
 
 const emptyTexts = {
     soup: 'Блюдо не выбрано',
     main_course: 'Блюдо не выбрано',
-    drink: 'Напиток не выбран'
+    salad: 'Блюдо не выбрано',
+    drink: 'Напиток не выбран',
+    dessert: 'Десерт не выбран'
 };
 
 function updateOrder() {
