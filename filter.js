@@ -1,4 +1,4 @@
-// Лабораторная работа 5. Хайваз Никита, группа 251-353
+// Лабораторная работа 6. Хайваз Никита, группа 251-353
 // Фильтрация блюд по типу (kind)
 function applyFilter(section, kind) {
     section.querySelectorAll('.dish').forEach((card) => {
