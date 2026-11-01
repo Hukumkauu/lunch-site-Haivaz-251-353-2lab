@@ -1,3 +1,4 @@
+// Лабораторная работа 4. Хайваз Никита, группа 251-353
 // Вывод блюд на страницу
 function createDishCard(dish) {
     const card = document.createElement('div');
