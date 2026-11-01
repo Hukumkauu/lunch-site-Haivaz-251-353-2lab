@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Лабораторная работа 4. Хайваз Никита, группа 251-353 -->
+<!-- Лабораторная работа 5. Хайваз Никита, группа 251-353 -->
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="lunch.css">
     <script src="dishes.js" defer></script>
     <script src="display.js" defer></script>
+    <script src="filter.js" defer></script>
     <script src="order.js" defer></script>
 </head>
 <body>
@@ -27,18 +28,52 @@
 
     <main>
         <section>
-            <h2>Супы</h2>
+            <h2>Выберите суп</h2>
+            <div class="filters">
+                <button type="button" class="filter" data-kind="fish">рыбный</button>
+                <button type="button" class="filter" data-kind="meat">мясной</button>
+                <button type="button" class="filter" data-kind="veg">вегетарианский</button>
+            </div>
             <div class="dishes" data-category="soup"></div>
         </section>
 
         <section>
-            <h2>Главные блюда</h2>
+            <h2>Выберите главное блюдо</h2>
+            <div class="filters">
+                <button type="button" class="filter" data-kind="fish">рыбное</button>
+                <button type="button" class="filter" data-kind="meat">мясное</button>
+                <button type="button" class="filter" data-kind="veg">вегетарианское</button>
+            </div>
             <div class="dishes" data-category="main_course"></div>
         </section>
 
         <section>
-            <h2>Напитки</h2>
+            <h2>Выберите салат или стартер</h2>
+            <div class="filters">
+                <button type="button" class="filter" data-kind="fish">рыбный</button>
+                <button type="button" class="filter" data-kind="meat">мясной</button>
+                <button type="button" class="filter" data-kind="veg">вегетарианский</button>
+            </div>
+            <div class="dishes" data-category="salad"></div>
+        </section>
+
+        <section>
+            <h2>Выберите напиток</h2>
+            <div class="filters">
+                <button type="button" class="filter" data-kind="cold">холодный</button>
+                <button type="button" class="filter" data-kind="hot">горячий</button>
+            </div>
             <div class="dishes" data-category="drink"></div>
+        </section>
+
+        <section>
+            <h2>Выберите десерт</h2>
+            <div class="filters">
+                <button type="button" class="filter" data-kind="small">маленькая порция</button>
+                <button type="button" class="filter" data-kind="medium">средняя порция</button>
+                <button type="button" class="filter" data-kind="large">большая порция</button>
+            </div>
+            <div class="dishes" data-category="dessert"></div>
         </section>
     </main>
 
@@ -61,8 +96,16 @@
                             <p id="main_course-selected">Блюдо не выбрано</p>
                         </div>
                         <div class="order-item">
+                            <p class="order-category">Салат или стартер</p>
+                            <p id="salad-selected">Блюдо не выбрано</p>
+                        </div>
+                        <div class="order-item">
                             <p class="order-category">Напиток</p>
                             <p id="drink-selected">Напиток не выбран</p>
+                        </div>
+                        <div class="order-item">
+                            <p class="order-category">Десерт</p>
+                            <p id="dessert-selected">Десерт не выбран</p>
                         </div>
                         <div class="order-item">
                             <p class="order-category">Стоимость заказа</p>
@@ -72,7 +115,9 @@
 
                     <input type="hidden" id="soup-input" name="soup" value="">
                     <input type="hidden" id="main_course-input" name="main_course" value="">
+                    <input type="hidden" id="salad-input" name="salad" value="">
                     <input type="hidden" id="drink-input" name="drink" value="">
+                    <input type="hidden" id="dessert-input" name="dessert" value="">
 
                     <label for="comment">Комментарии к заказу</label>
                     <textarea id="comment" name="comment" rows="5"></textarea>
