@@ -1,12 +1,12 @@
-// Лабораторная работа 6. Хайваз Никита, группа 251-353
+// Лабораторная работа 8. Хайваз Никита, группа 251-353
 // Проверка состава ланча и уведомления
 
-function getMissingMessage() {
-    const soup = selectedDishes.soup;
-    const main = selectedDishes.main_course;
-    const salad = selectedDishes.salad;
-    const drink = selectedDishes.drink;
-    const dessert = selectedDishes.dessert;
+function getMissingMessage(selected) {
+    const soup = selected.soup;
+    const main = selected.main_course;
+    const salad = selected.salad;
+    const drink = selected.drink;
+    const dessert = selected.dessert;
 
     if (!soup && !main && !salad && !drink && !dessert) {
         return 'Ничего не выбрано. Выберите блюда для заказа';
@@ -52,11 +52,3 @@ function showNotification(text) {
     overlay.append(box);
     document.body.append(overlay);
 }
-
-document.querySelector('.order form').addEventListener('submit', (event) => {
-    const message = getMissingMessage();
-    if (message) {
-        event.preventDefault();
-        showNotification(message);
-    }
-});

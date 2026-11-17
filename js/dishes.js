@@ -1,7 +1,10 @@
-// Лабораторная работа 7. Хайваз Никита, группа 251-353
+// Лабораторная работа 8. Хайваз Никита, группа 251-353
 // Загрузка блюд с сервера (API)
 
-const API_URL = 'https://api.rozetkaimg.me/labs/api/dishes';
+// Адрес сервера и личный API-ключ (нужен для заказов)
+const API_BASE = 'https://api.rozetkaimg.me';
+const API_KEY = '135c0680-c530-4d5b-b80d-0df8024573ca';
+const API_URL = API_BASE + '/labs/api/dishes';
 
 // Сюда попадут блюда, полученные с сервера
 let dishes = [];
@@ -44,6 +47,7 @@ function showLoadError() {
     document.querySelector('main').prepend(message);
 }
 
+// Загружает блюда с сервера и возвращает их массив
 async function loadDishes() {
     try {
         const response = await fetch(API_URL);
@@ -52,12 +56,9 @@ async function loadDishes() {
         }
         const data = await response.json();
         dishes = data.map(prepareDish);
-        displayDishes();
     } catch (error) {
         console.error(error);
         showLoadError();
     }
+    return dishes;
 }
-
-// Загружаем блюда, когда страница и все скрипты готовы
-document.addEventListener('DOMContentLoaded', loadDishes);

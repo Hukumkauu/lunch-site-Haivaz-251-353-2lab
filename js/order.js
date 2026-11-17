@@ -1,46 +1,36 @@
-// Лабораторная работа 6. Хайваз Никита, группа 251-353
-// Выбор блюд и подсчёт стоимости заказа
-const selectedDishes = {
-    soup: null,
-    main_course: null,
-    salad: null,
-    drink: null,
-    dessert: null
-};
+// Лабораторная работа 8. Хайваз Никита, группа 251-353
+// Страница "Собрать ланч": выбор блюд и панель перехода к оформлению
 
-const emptyTexts = {
-    soup: 'Блюдо не выбрано',
-    main_course: 'Блюдо не выбрано',
-    salad: 'Блюдо не выбрано',
-    drink: 'Напиток не выбран',
-    dessert: 'Десерт не выбран'
-};
+let selectedDishes = {};
 
-function updateOrder() {
-    const nothingSelected = document.getElementById('order-empty');
-    const summary = document.getElementById('order-summary');
+function highlightSelected() {
+    document.querySelectorAll('.dish').forEach((card) => {
+        const dish = dishes.find((item) => item.keyword === card.dataset.dish);
+        const isSelected = selectedDishes[dish.category] === dish;
+        card.classList.toggle('selected', isSelected);
+    });
+}
+
+function updatePanel() {
+    const panel = document.getElementById('checkout-panel');
+    const link = document.getElementById('checkout-link');
+    const hint = document.getElementById('checkout-hint');
+
     let total = 0;
-    let hasDishes = false;
-
     for (const category in selectedDishes) {
-        const dish = selectedDishes[category];
-        const text = document.getElementById(`${category}-selected`);
-        const input = document.getElementById(`${category}-input`);
-
-        if (dish) {
-            text.textContent = `${dish.name} ${dish.price} ₽`;
-            input.value = dish.keyword;
-            total += dish.price;
-            hasDishes = true;
-        } else {
-            text.textContent = emptyTexts[category];
-            input.value = '';
-        }
+        total += selectedDishes[category].price;
     }
 
-    document.getElementById('order-total').textContent = total + ' ₽';
-    nothingSelected.style.display = hasDishes ? 'none' : 'block';
-    summary.style.display = hasDishes ? 'block' : 'none';
+    // Панель скрыта, если ничего не выбрано
+    const hasDishes = Object.keys(selectedDishes).length > 0;
+    panel.style.display = hasDishes ? 'flex' : 'none';
+    document.getElementById('checkout-total').textContent = total + ' ₽';
+
+    // Ссылка доступна, только если заказ подходит под одно из комбо
+    const message = getMissingMessage(selectedDishes);
+    link.classList.toggle('disabled', Boolean(message));
+    link.setAttribute('aria-disabled', message ? 'true' : 'false');
+    hint.textContent = message || '';
 }
 
 function selectDish(keyword) {
@@ -48,15 +38,10 @@ function selectDish(keyword) {
     if (!dish) {
         return;
     }
-
     selectedDishes[dish.category] = dish;
-
-    // Рамка только у выбранного блюда своей категории
-    document.querySelectorAll(`.dishes[data-category="${dish.category}"] .dish`).forEach((card) => {
-        card.classList.toggle('selected', card.dataset.dish === keyword);
-    });
-
-    updateOrder();
+    saveOrder(selectedDishes);
+    highlightSelected();
+    updatePanel();
 }
 
 document.querySelector('main').addEventListener('click', (event) => {
@@ -66,14 +51,19 @@ document.querySelector('main').addEventListener('click', (event) => {
     }
 });
 
-document.querySelector('.order form').addEventListener('reset', () => {
-    for (const category in selectedDishes) {
-        selectedDishes[category] = null;
+// Не даём перейти по ссылке, пока она недоступна
+document.getElementById('checkout-link').addEventListener('click', (event) => {
+    if (event.currentTarget.classList.contains('disabled')) {
+        event.preventDefault();
     }
-    document.querySelectorAll('.dish.selected').forEach((card) => {
-        card.classList.remove('selected');
-    });
-    updateOrder();
 });
 
-updateOrder();
+async function initLunchPage() {
+    await loadDishes();
+    displayDishes();
+    selectedDishes = restoreSelected();
+    highlightSelected();
+    updatePanel();
+}
+
+document.addEventListener('DOMContentLoaded', initLunchPage);

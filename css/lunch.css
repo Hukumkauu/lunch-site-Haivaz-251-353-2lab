@@ -1,4 +1,4 @@
-/* Лабораторная работа 6. Хайваз Никита, группа 251-353 */
+/* Лабораторная работа 8. Хайваз Никита, группа 251-353 */
 .dishes {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -248,6 +248,66 @@ legend {
     font-size: 18px;
 }
 
+.checkout-panel {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+    padding: 15px 30px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+    .checkout-panel p {
+        margin: 0;
+    }
+
+.checkout-total {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.checkout-hint {
+    font-size: 15px;
+    color: gray;
+}
+
+.checkout-link {
+    padding: 12px 25px;
+    border-radius: 10px;
+    background-color: tomato;
+    color: white;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+    .checkout-link:hover {
+        color: white;
+        opacity: 0.85;
+    }
+
+    .checkout-link.disabled {
+        background-color: #cccccc;
+        pointer-events: none;
+        cursor: default;
+    }
+
+.order-dishes-empty {
+    font-size: 20px;
+}
+
+    .order-dishes-empty a {
+        color: tomato;
+        font-size: 20px;
+    }
+
 .combos-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -355,6 +415,12 @@ legend {
 }
 
 @media (max-width: 600px) {
+    .checkout-panel {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 20px;
+    }
+
     .dishes,
     .combos-grid {
         grid-template-columns: 1fr;

@@ -1,6 +1,6 @@
-// Лабораторная работа 7. Хайваз Никита, группа 251-353
+// Лабораторная работа 8. Хайваз Никита, группа 251-353
 // Вывод блюд на страницу
-function createDishCard(dish) {
+function createDishCard(dish, buttonText = 'Добавить') {
     const card = document.createElement('div');
     card.className = 'dish';
     card.dataset.dish = dish.keyword;
@@ -23,7 +23,7 @@ function createDishCard(dish) {
 
     const button = document.createElement('button');
     button.type = 'button';
-    button.textContent = 'Добавить';
+    button.textContent = buttonText;
 
     card.append(img, price, name, weight, button);
     return card;
