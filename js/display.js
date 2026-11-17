@@ -1,4 +1,4 @@
-// Лабораторная работа 6. Хайваз Никита, группа 251-353
+// Лабораторная работа 7. Хайваз Никита, группа 251-353
 // Вывод блюд на страницу
 function createDishCard(dish) {
     const card = document.createElement('div');
@@ -40,5 +40,3 @@ function displayDishes() {
         }
     });
 }
-
-displayDishes();
